@@ -5,11 +5,19 @@
 async function getdata() {
 
     //Skapar de första funktionerna för inhämtning av data.
-    //Ajax-anrop samt sortering har ännu ej gjorts. 
+    //Använder async och await för att göra funktionen asynkron. 
 
     const data = await fetch("https://dahlgren.miun.se/ramschema_ht23.php").then(resp => {
         return resp.json()
     })
+
+    //Sortering av kursnamn i alfabetisk ordning genom funktionerna sort och .localeCompare.
+
+    data.sort((a, b) => {
+        const result = a.coursename.localeCompare(b.coursename);
+        return result;
+    })
+
 
     const tbody = document.getElementById("tableBody");
     for (const info of data) {
