@@ -2,10 +2,10 @@
 
 //Funktionen getdata är funktionen innehållandes de andra funktionerna. 
 
-async function getdata(sortProperty) {
+async function getdata(sortProperty, filterString) {
 
 
-    const data = await fetch("https://dahlgren.miun.se/ramschema_ht23.php").then(resp => {
+    let data = await fetch("https://dahlgren.miun.se/ramschema_ht23.php").then(resp => {
         return resp.json()
     })
 
@@ -25,6 +25,14 @@ async function getdata(sortProperty) {
         }
     })
 
+    data = data.filter(a => {
+        if(!filterString){
+            return true;
+        }
+            const matchCode = a.code.toLowerCase().includes(filterString.toLowerCase());
+            const matchName = a.coursename.toLowerCase().includes(filterString.toLowerCase());
+            return matchCode || matchName;
+    })
 
     const tbody = document.getElementById("tableBody");
     tbody.innerHTML = "";
@@ -48,3 +56,5 @@ getdata();
 document.getElementById("code").addEventListener("click", () => getdata("code"));
 document.getElementById("course").addEventListener("click", () => getdata("coursename"));
 document.getElementById("prog").addEventListener("click", () => getdata("progression"));
+
+document.getElementById("filter").addEventListener("input", (event) => getdata("", event.target.value) );
