@@ -1,3 +1,4 @@
+
 "use strict"
 
 //Funktionen getdata är funktionen innehållandes de andra funktionerna. 
