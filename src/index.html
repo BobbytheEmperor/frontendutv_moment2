@@ -4,18 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <script src="main.js" type="module"></script>
     <title>Tabell</title>
 </head>
 
 <body>
     <h1>Tabell</h1>
+    <input id="filter">
+    <br>
     <table>
         <thead>
             <tr>
-                <th>Kurskod</th>
-                <th>Kursnamn</th>
-                <th>Progression</th>
+                <th id="code">Kurskod</th>
+                <th id="course">Kursnamn</th>
+                <th id="prog">Progression</th>
             </tr>
         </thead>
         <tbody id="tableBody"></tbody>
